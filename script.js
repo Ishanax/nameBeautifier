@@ -2,7 +2,7 @@ var color = randomColor(); // a hex code for an attractive color
 
 const button = document.getElementById('beautifierBtn')
 const nameToBeautify = document.getElementById('name')
-//const sameRandomColor = document.getElementsByClassName('sameRandomColor')
+const yourInput = document.getElementById('yourInput')
 
 const fontsArr = [
         "Impact,Charcoal,sans-serif",
@@ -31,8 +31,6 @@ function beautifyName(){
             hue: 'blue'
     })
     document.body.style.backgroundColor = randomColor()
-    
-    
 
     //change font family:
     let randomFont = Math.floor(Math.random() * fontsArr.length)
@@ -42,11 +40,17 @@ function beautifyName(){
     let randomWeight = Math.floor(Math.random() * fontWeightArr.length)
     nameToBeautify.style.fontWeight = fontWeightArr[randomWeight]
 
-    //change font size:
+    //change title/name:
+    if(yourInput.value !== '') {
+        nameToBeautify.innerHTML = yourInput.value
+    }
 }
 
 button.addEventListener('click', beautifyName) 
-    
+
+yourInput.addEventListener('focus', () => {
+    yourInput.value = ''
+})
 
 
 // - DONE !font family (use array above) 
