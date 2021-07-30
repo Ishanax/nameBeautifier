@@ -2,7 +2,8 @@ var color = randomColor(); // a hex code for an attractive color
 
 const button = document.getElementById('beautifierBtn')
 const nameToBeautify = document.getElementById('name')
-const yourInput = document.getElementById('yourInput')
+let yourInput = document.getElementById('yourInput')
+let dogImage = document.getElementById('dogImage')
 
 const fontsArr = [
         "Impact,Charcoal,sans-serif",
@@ -44,6 +45,15 @@ function beautifyName(){
     if(yourInput.value !== '') {
         nameToBeautify.innerHTML = yourInput.value
     }
+    //add dog picture:
+    fetch("https://dog.ceo/api/breeds/image/random")
+        .then(response => response.json())
+        .then(data => {
+            dogImage.innerHTML = `
+            <img width="250px" src="${data.message}" />
+        `
+    })
+
 }
 
 button.addEventListener('click', beautifyName) 
@@ -53,11 +63,9 @@ yourInput.addEventListener('focus', () => {
 })
 
 
-// - DONE !font family (use array above) 
-// - DONE! font color (either use randomcolor or your own array of colors)
-// - DONE ! font weight
-// - DONE ! button color (match the font color)
-// - change shape button?
+    
+
+
 
 
 
